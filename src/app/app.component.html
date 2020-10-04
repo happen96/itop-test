@@ -1,0 +1,64 @@
+<div class="container mt-5">
+  <h2 class="text-center">Test Task</h2>
+  <div class="row mt-5">
+    <div class="col-6">
+
+      <!-- Working area -->
+      <form [formGroup]="form" (ngSubmit)="formSubmit()">
+        <div class="form-group">
+
+          <div class="alert-danger"
+               *ngIf="form.get('email').invalid && form.get('email').touched">
+            Field is required
+          </div>
+          <input type="text" formControlName="email" class="form-control"
+          placeholder="{{form.get('email').invalid
+          && form.get('email').touched ? 'mail@gmail.com' : ''}}">
+
+          <div class="alert-danger"
+               *ngIf="form.get('passwordCustomField').invalid && form.get('passwordCustomField').touched">
+            Field is required  and  has to be contain more then 5 char
+          </div>
+          <app-custom-input formControlName="passwordCustomField"></app-custom-input>
+
+          <div class="error alert-danger" *ngIf="form.hasError('error')">
+            Form is Invalid
+          </div>
+
+        </div>
+
+        <button class="btn btn-primary" type="submit" [disabled]="submitDisable">Submit</button>
+      </form>
+      <!-- End Working area -->
+
+    </div>
+    <div class="col-6">
+      Form value: {{ this.form.value | json }}
+      <hr>
+      <h3>Tasks</h3>
+      <ol>
+        <li>If you open the console, there is an error. Why?</li>
+        <li>Solve the issue.</li>
+        <li>Prevent form to be submitted if it's invalid.</li>
+        <li>RxJS: When the user enters an email address and it matches the email pattern save it to localStorage with timestamp as a key</li>
+        <li>RxJS: On 3rd submit if password incorrect lock the form</li>
+        <li>Add errors, placeholders and labels to the inputs.</li>
+        <li>app-custom-input must take an [input] and send an (output).</li>
+      </ol>
+
+      <h3>Notes</h3>
+
+      <ul>
+        <li>
+          The [app-custom-input] component must look like this: <img src="/assets/custom-input.png" loading="lazy" width="300">
+        </li>
+        <li>If you have any ideas about how to improve the performance, let us know.</li>
+        <li>Feel free to add any comments for us to better understand your decisions.</li>
+        <li>Good luck!</li>
+        <li>
+          P.S. You don't have to <strong>comment or remove</strong> something in order to solve the above issue ;)
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
